@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import { Router, Route, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 
-import App from './pages/app';
+import App from './pages/main-page';
 
 import store from './redux/store';
 

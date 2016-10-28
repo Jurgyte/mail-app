@@ -19,6 +19,9 @@ const config = {
         new webpack.NoErrorsPlugin()
     ],
     module: {
+        preLoaders: [
+            { test: /\.json$/, exclude: /node_modules/, loader: 'json'},
+        ],
         loaders: [
             { test: /\.js?/, loader: 'babel?presets[]=es2015,presets[]=stage-0,presets[]=react', exclude: /node_modules/ },
             { test: /\.css$|\.scss$|\.sass$/, loader: 'style!css?modules!sass?sourceMap' },
