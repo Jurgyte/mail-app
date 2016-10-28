@@ -4,6 +4,8 @@ import moment from 'moment';
 import {List, ListItem} from 'react-toolbox/lib/list';
 import {IconButton} from 'react-toolbox/lib/button';
 
+import style from './list.scss';
+
 
 class EmailList extends React.Component {
 
@@ -18,12 +20,13 @@ class EmailList extends React.Component {
                     {
                         R.map(
                             (mail) => <div key={mail.uid}>
-                                <IconButton icon='delete' onClick={() => this.props.deleteEmail(mail.uid)}/>
                                 <ListItem
+                                    className={style.listItem}
                                     caption={mail.subject}
                                     legend={`${mail.sender} ${this.formatDate(mail.time_sent)}`}
                                     rightIcon={ !mail.read ? 'star' : 'star_border' }
                                     onClick={() => this.props.setEmail(mail)}/>
+                                <IconButton className={style.delete} icon='close' onClick={() => this.props.deleteEmail(mail.uid)}/>
                             </div>, this.props.messages)
                     }
                 </List>

@@ -20,8 +20,6 @@ export function receiveEmails(emails) {
         (item) => ({ ...item, read: false })
     );
 
-    console.log(extendedEmails)
-
     return {
         type: RECEIVE_EMAILS,
         emails: extendedEmails
