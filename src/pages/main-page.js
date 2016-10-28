@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import {getEmails, setReadTrue} from '../redux/actions/emails';
+import {getEmails, setReadTrue, deleteEmails} from '../redux/actions/emails';
 
 import Header from '../components/header';
 import EmailList from '../components/email-list';
@@ -15,6 +15,7 @@ const mapStateToProps = (state)=> ({
 
 const mapDispatchToProps = (dispatch, ownProps)=>({
     getEmails: () => dispatch(getEmails()),
+    deleteEmails: (id) => dispatch(deleteEmails(id)),
     setReadTrue: (id) => dispatch(setReadTrue(id))
 });
 
@@ -42,7 +43,9 @@ class App extends React.Component {
             <Header />
             <div className={style.content}>
                 <div className={style.sectionLeft}>
-                    <EmailList messages={this.props.emails} setEmail={this.setEmail}/>
+                    <EmailList messages={this.props.emails}
+                               setEmail={this.setEmail}
+                               deleteEmail={this.props.deleteEmails}/>
                 </div>
                 <div className={style.sectionRight}>
                     <EmailContent email={this.state.email}/>
@@ -55,7 +58,8 @@ class App extends React.Component {
 App.propTypes = {
     emails: React.PropTypes.array.isRequired,
     setReadTrue: React.PropTypes.func,
-    getEmails: React.PropTypes.func
+    getEmails: React.PropTypes.func,
+    deleteEmails: React.PropTypes.func
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

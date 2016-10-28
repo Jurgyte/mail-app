@@ -1,5 +1,5 @@
 //import update from 'react-addons-update';
-import {RECEIVE_EMAILS, EMAIL_READ} from '../actions/emails';
+import {RECEIVE_EMAILS, EMAIL_READ, EMAIL_DELETED} from '../actions/emails';
 
 import update from 'react/lib/update';
 
@@ -12,6 +12,8 @@ export default (state = [], action)=> {
             return update(state, {[action.index]:{
             read: {$set: true}
         }});
+        case EMAIL_DELETED:
+            return update(state, { $splice: [[action.index, 1]] });
         default:
             return state;
     }

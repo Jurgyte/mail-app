@@ -5,6 +5,8 @@ export const REQUEST_EMAILS = 'REQUEST_EMAILS';
 export const RECEIVE_EMAILS = 'RECEIVE_EMAILS';
 export const REQUEST_READ = 'REQUEST_READ';
 export const EMAIL_READ = 'EMAIL_READ';
+export const REQUEST_DELETE = 'REQUEST_DELETE';
+export const EMAIL_DELETED = 'EMAIL_DELETED';
 
 function requestEmails() {
     return {
@@ -59,3 +61,30 @@ export function setReadTrue(uid) {
         });
     };
 }
+
+
+
+function requestRead(uid) {
+
+    return {
+        type: REQUEST_DELETE,
+        uid
+    };
+}
+
+export function deleteEmails(uid) {
+
+    return function (dispatch, getState) {
+
+        dispatch(requestRead());
+        const state = getState();
+        const index = R.findIndex(R.propEq('uid', uid))(state.emails);
+
+        return dispatch({
+            type: EMAIL_DELETED,
+            index,
+            emails: state.emails
+        });
+    };
+}
+
