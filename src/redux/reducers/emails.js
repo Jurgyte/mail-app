@@ -1,4 +1,3 @@
-//import update from 'react-addons-update';
 import {RECEIVE_EMAILS, EMAIL_READ, EMAIL_DELETED} from '../actions/emails';
 
 import update from 'react/lib/update';

@@ -44,25 +44,31 @@ function requestRead(uid) {
     };
 }
 
+export function receiveRead(emails, uid) {
+
+    const index = R.findIndex(R.propEq('uid', uid))(emails);
+
+    return {
+        type: EMAIL_READ,
+        index,
+        emails
+    };
+}
+
 export function setReadTrue(uid) {
 
     return function (dispatch, getState) {
 
         dispatch(requestRead());
         const state = getState();
-        const index = R.findIndex(R.propEq('uid', uid))(state.emails);
-
-        return dispatch({
-            type: EMAIL_READ,
-            index,
-            emails: state.emails
-        });
+        
+        return dispatch(receiveRead(state.emails, uid));
     };
 }
 
 
 
-function requestRead(uid) {
+function requestDelete(uid) {
 
     return {
         type: REQUEST_DELETE,
@@ -70,19 +76,25 @@ function requestRead(uid) {
     };
 }
 
+export function receiveDelete(emails, uid) {
+
+    const index = R.findIndex(R.propEq('uid', uid))(emails);
+
+    return {
+        type: EMAIL_DELETED,
+        index,
+        emails
+    };
+}
+
 export function deleteEmails(uid) {
 
     return function (dispatch, getState) {
 
-        dispatch(requestRead());
+        dispatch(requestDelete());
         const state = getState();
-        const index = R.findIndex(R.propEq('uid', uid))(state.emails);
 
-        return dispatch({
-            type: EMAIL_DELETED,
-            index,
-            emails: state.emails
-        });
+        return dispatch(receiveDelete(state.emails, uid));
     };
 }
 

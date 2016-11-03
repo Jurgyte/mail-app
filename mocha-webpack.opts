@@ -1,0 +1,4 @@
+--colors
+--webpack-config webpack.test.config.js
+src/**/*.spec.js
+--require source-map-support/register
