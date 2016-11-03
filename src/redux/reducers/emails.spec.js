@@ -1,7 +1,6 @@
 import {receiveEmails, receiveDelete, receiveRead} from '../actions/emails';
 import EmailsReducer from './emails';
 import {expect} from 'chai';
-import {describe, it} from 'mocha';
 
 describe('Email reducer', () => {
 
