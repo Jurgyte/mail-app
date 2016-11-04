@@ -1,6 +1,5 @@
 import React from 'react';
 import { expect } from 'chai';
-import sinon from 'sinon';
 import { applyMiddleware, combineReducers, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import { mount } from 'enzyme';
@@ -44,25 +43,16 @@ describe("Email Page", function() {
 
   let store;
   let mockProps;
-  let spy;
-  let spy1;
-  let spy2;
 
   beforeEach(() => {
     store = applyMiddleware(thunk)(createStore)(combineReducers({
-      emails,
+      emails
     }), initialState);
 
     mockProps = {
-      messages,
-      setReadTrue: () => {},
-      getEmails: () => {},
-      deleteEmails: () => {}
+      messages
     };
 
-    spy = sinon.spy(mockProps, 'setReadTrue');
-    spy1 = sinon.spy(mockProps, 'getEmails');
-    spy2 = sinon.spy(mockProps, 'deleteEmails');
   });
 
 
@@ -76,6 +66,7 @@ describe("Email Page", function() {
     expect(wrapper.find('Header').length).to.equal(1);
     expect(wrapper.find('EmailList').length).to.equal(1);
     expect(wrapper.find('EmailContent').length).to.equal(1);
+    expect(wrapper.find('Card').length).to.equal(0);
   });
 
 });
